@@ -15,7 +15,7 @@ class Task(models.Model):
     complete_date = models.DateTimeField(null=True, blank=True)
     complete = models.BooleanField(default=False)
     notify = models.EmailField(max_length=255, default="", blank=True)
-    category = models.CharField(max_length=45, default="", choices=(('IMPORTANT', 'IMPORTANT'), ('URGENT', 'URGENT'), ('NORMAL', 'NORMAL')))
+    category = models.CharField(max_length=45, default="", choices=(('HOMEWORK', 'HOMEWORK'), ('GROUPWORK', 'GROUPWORK'), ('WORKSTUDY', 'WORKSTUDY')))
     priority = models.CharField(max_length=45, default="", choices=(('PRIORITY', 'PRIORITY'), ('NON-PRIORITY', 'NON-PRIORITY')))
     task_image = models.ImageField(upload_to='images/', blank=True, null=True)
 
@@ -26,8 +26,3 @@ class Task(models.Model):
         super().save(*args, **kwargs)
         if self.complete and self.notify:
             send_an_email()
-
-# @receiver(post_save, sender=Task)
-# def send_email_to_interested_party(sender, instance, created, **kwargs):
-#   if instance.complete:
-#      print('Subject here,\n Here is the message\n from@example.com')

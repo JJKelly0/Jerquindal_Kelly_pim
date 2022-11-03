@@ -1,6 +1,5 @@
 from django.test import TestCase
-from unittest.mock import patch  # , Mock
-
+from unittest.mock import patch  , Mock
 from pim.todo.models import Task
 
 
